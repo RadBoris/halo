@@ -42,7 +42,7 @@ class Info(Base):
   id = Column(Integer, primary_key = True)
   key = Column(String(50))
   value = Column(String(50))
-  user_id = Column(Integer, ForeignKey('users.uid'))
+  user_id = Column(Integer, db.ForeignKey('users.uid'))
   
 
   def __init__(self, key, value, user_id):
