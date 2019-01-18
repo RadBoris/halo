@@ -42,6 +42,7 @@ class Info(Base):
   key = Column(String(50))
   value = Column(String(50))
   user_id = Column(Integer, ForeignKey('users.uid'))
+  users = relationship("User", back_populates="info")
 
   def __init__(self, key, value, user_id):
     self.key = key
