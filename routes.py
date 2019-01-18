@@ -5,6 +5,7 @@ from database import db_session
 from sqlalchemy import and_, or_, not_
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] =" postgres://ubzdjahonslgwk:4516f846862bbb569079f2b53bcccd8a145315c17098df6390746eee91fd9995@ec2-184-72-230-93.compute-1.amazonaws.com:5432/daco986o48khus"
 
 app.secret_key = "development-key"
 
