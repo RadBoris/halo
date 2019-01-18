@@ -20,7 +20,7 @@ class User(Base):
     self.lastname = lastname.title()
     self.email = email.lower()
     self.set_password(password)
-     
+
   def set_password(self, password):
     self.pwdhash = generate_password_hash(password)
 
@@ -29,13 +29,13 @@ class User(Base):
 
 class Info(Base):
   __tablename__ = 'info'
-  id = Column(Integer, primary_key = True) 
+  id = Column(Integer, primary_key = True)
   key = Column(String(50))
   value = Column(String(50))
   user_id = Column(Integer, ForeignKey('users.uid'))
-  
+
   def __init__(self, key, value, user_id):
     self.key = key
     self.value = value
-    self.user_id = user_id 
-   
+    self.user_id = user_id
+

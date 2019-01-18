@@ -1,18 +1,16 @@
 {% extends "layout.html" %}
-	{{ user.email }}
 {% block content %}
   <main class="hero-section">
     <div class="container">
-      
       <div class="section-tabs">
-      <p><a href="{{ url_for('about') }}">Check out your data!</a></p> 
+      <p><a href="{{ url_for('about') }}">Check out your data!</a></p>
       </div>
 
       <div class="section-map">
         <div class="nav">
           <form method="POST" action="/home">
             {{ form.hidden_tag() }}
-            
+
             <div class="form-group">
               {% if form.key.errors %}
                 {% for error in form.key.errors %}
@@ -23,23 +21,18 @@
               {{ form.key(placeholder="Enter key") }}
 		{{ form.value(placeholder="Enter value") }}
             </div>
-            
+
             {{ form.submit(class="btn-primary") }}
           </form>
         </div>
-
-      
-       <div id="map"></div>
-      </div>
-      
       <div class="clearfix"></div>
     </div>
   </main>
 
   <script>
 	$('#submit').click(function (){
-	alert('Your information has been saved');
-   });     
+	   alert('Your information has been saved');
+   });
   </script>
 
 {% endblock %}

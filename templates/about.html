@@ -8,7 +8,6 @@
     <p>
 	 <form method="POST" action="/about">
             {{ form.hidden_tag() }}
-
             <div class="form-group">
               {% if form.search.errors %}
                 {% for error in form.search.errors %}
@@ -17,7 +16,6 @@
               {% endif %}
 
               {{ form.search(placeholder="Enter key to search") }}
-            
             </div>
 
             {{ form.submit(class="btn-primary") }}
@@ -28,10 +26,10 @@
 	{% for key in results  %}
     <tr>
       <td>{{ key }}</td>
-    
+
     </tr>
   {% endfor %}
-       </div>      
+       </div>
 {% endif %}
   </main>
 {% endblock %}

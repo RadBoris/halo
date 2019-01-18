@@ -1,26 +1,21 @@
 {% extends "layout.html" %}
 
-
 {% block content %}
   <main class="hero-section">
     <div class="container">
-      
       <div class="section-map">
         <div class="nav">
 	<div>
 	{% for key in results %}
     <tr>
       <td>{{ key.value }}</td>
-    
     </tr>
   {% endfor %}
-       </div>          
+       </div>
       </div>
-      
       <div class="clearfix"></div>
     </div>
   </main>
-
 
 {% endblock %}
 

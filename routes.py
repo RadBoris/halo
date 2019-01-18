@@ -6,9 +6,6 @@ from sqlalchemy import and_, or_, not_
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] =" postgres://ubzdjahonslgwk:4516f846862bbb569079f2b53bcccd8a145315c17098df6390746eee91fd9995@ec2-184-72-230-93.compute-1.amazonaws.com:5432/daco986o48khus"
-
-
 app.secret_key = "development-key"
 
 @app.route("/")
@@ -32,15 +29,7 @@ def about():
     else:
       if form.search.data is not None:
         results = db_session.query(Info).filter(Info.key.like('%' + form.search.data + '%'), Info.user_id==cid)
-        #results = db_session.query(Info).filter_by(user_id=id).all()
-     #qry = db_session.query(Info).filter_by(search=key).all()
-        #results = keys.all()
         return render_template('results.html', results=results)
-     # db_session.add(newuser)
-     # db_session.commit()
-     # session['id'] = newuser.uid
-     # session['email'] = newuser.email
-     # return redirect(url_for('about'))
 
   elif request.method == "GET":
     return render_template('about.html', form=form)
@@ -70,25 +59,21 @@ def signup():
 def login():
   if 'email' in session:
     return redirect(url_for('home'))
-
   form = LoginForm()
 
   if request.method == "POST":
     if form.validate() == False:
       return render_template("login.html", form=form)
     else:
-      email = form.email.data 
-      password = form.password.data 
-
+      email = form.email.data
+      password = form.password.data
       user = db_session.query(User).filter(User.email==email).first()
-      
       if user is not None and user.check_password(password):
         session['email'] = user.email
-        session['id'] = user.uid 
+        session['id'] = user.uid
         return redirect(url_for('home'))
       else:
         return redirect(url_for('login'))
-
   elif request.method == 'GET':
     return render_template('login.html', form=form)
 
@@ -105,22 +90,19 @@ def home():
   form = InfoForm()
   key = ''
   value= ''
-  
+
   user = db_session.query(User).filter(User.email==email).first()
   if request.method == 'POST':
     if form.validate() == False:
       return render_template('home.html', form=form)
     else:
-      
-      
-      
+
       key = form.key.data
-      value = form.value.data 
+      value = form.value.data
       newinfo = Info(form.key.data, form.value.data, user.uid)
       db_session.add(newinfo)
       db_session.commit()
 
-      # return those results
       return render_template('home.html', form=form, key=key, value=value)
 
   elif request.method == 'GET':
@@ -130,10 +112,7 @@ def home():
 def results():
   if 'email' not in session:
     return redirect(url_for('login'))
-   
   return render_template('results.html')
-
-
 
 if __name__ == "__main__":
   app.run(host='0.0.0.0', debug=True)
