@@ -11,8 +11,8 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://ubzdjahonslgwk:4516f846862bbb569079f2b53bcccd8a145315c17098df6390746eee91fd9995@ec2-184-72-230-93.compute-1.amazonaws.com:5432/daco986o48khus'
 
 db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-
+MIGRATION_DIR = os.path.join('models', 'migrations')
+migrate = Migrate(app, db, directory=MIGRATION_DIR)
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 
