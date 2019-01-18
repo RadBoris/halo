@@ -23,6 +23,7 @@ class User(Base):
   lastname = Column(String(100))
   email = Column(String(120), unique=True)
   pwdhash = Column(String(54))
+  info = db.relationship('Info', backref='users', lazy=True)
 
   def __init__(self, firstname, lastname, email, password):
     self.firstname = firstname.title()
@@ -42,7 +43,7 @@ class Info(Base):
   key = Column(String(50))
   value = Column(String(50))
   user_id = Column(Integer, ForeignKey('users.uid'))
-  users = relationship("User", back_populates="info")
+  
 
   def __init__(self, key, value, user_id):
     self.key = key
