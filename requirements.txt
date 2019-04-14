@@ -1,7 +1,6 @@
 alembic==1.0.6
 anytree==2.4.3
 cachetools==3.0.0
-Click==7.0
 colorama==0.4.1
 Flask==1.0.2
 Flask-Migrate==2.3.1
@@ -11,7 +10,7 @@ Flask-SQLAlchemy==2.3.2
 Flask-WTF==0.14.2
 gunicorn==19.9.0
 itsdangerous==1.1.0
-Jinja2==2.10
+Jinja2==2.10.1
 johnnydep==0.7
 Mako==1.0.7
 MarkupSafe==1.1.0
